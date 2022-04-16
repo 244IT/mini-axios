@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./dist/axios.js"></script>
+    <script>
+      axios({ method: "post" });
+      axios.get();
+      axios.request({ method: "put" });
+
+      const instance = axios.create("用户配置");
+      instance({ method: "delete" });
+      instance.request({ method: "patch" });
+    </script>
+  </body>
+</html>
