@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./dist/mini-axios.js"></script>
+    <script>
+      axios.interceptors.request.use((config) => {
+        console.log('请求拦截1:', config)
+        return config
+      }, (err) => {
+        console.log('请求拦截1err:', err)
+        return Promise.reject(err);
+      })
+      axios.interceptors.request.use((config) => {
+        console.log('请求拦截2:', config)
+        return config
+      }, (err) => {
+        console.log('请求拦截2err:', err)
+        return Promise.reject(err);
+      })
+
+      axios.interceptors.response.use((config) => {
+        console.log('响应拦截1:', config)
+        return config
+      }, (err) => {
+        console.log('响应拦截1err:', err)
+        return Promise.reject(err);
+      })
+      axios.interceptors.response.use((config) => {
+        console.log('响应拦截2:', config)
+        return config
+      }, (err) => {
+        console.log('响应拦截2err:', err)
+        return Promise.reject(err);
+      })
+      axios('http://localhost:3000/comments').then(res => {
+        console.log(res)
+      })
+      
+      const instance = axios.create()
+      instance.interceptors.request.use((config) => {
+        console.log('实例请求拦截1：', config)
+        return config
+      })
+      instance.interceptors.response.use((config) => {
+        console.log('实例响应拦截1：', config)
+        return config
+     })
+        instance.get('http://localhost:3000/comments').then(res => {
+            console.log('instance:', res)
+        })
+    </script>
+  </body>
+</html>
